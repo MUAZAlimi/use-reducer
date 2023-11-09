@@ -1,28 +1,32 @@
-import { useState, useReducer } from "react";
+import { useReducer } from "react";
 
 const reducer = (state, action) => {
   switch (action.type) {
     case 'increment':
-      return {count: state.count + 1}
+      return {...state, count: state.count + 1}
     case 'decrement':
-      return {count: state.count - 1}
+      return {...state, count: state.count - 1}
+    case 'newUserInput':
+      return {...state, userInput: action.payLoad}
+    case 'tgColor':
+      return {...state, color: !state.color}   
       default:
         throw new Error()
   }
 }
 
 const App = () => {
-  const [state, dispatch] = useReducer(reducer, {count: 0})
-  const [userInput, setUserInput] = useState('')
-  // const [count, setCount] = useState(0)
-  const [color, setColor] = useState(false)
+  const [state, dispatch] = useReducer(reducer, {count: 0, userInput:'', color: false})
+  // const [userInput, setUserInput] = useState('')
+  // // const [count, setCount] = useState(0)
+  // const [color, setColor] = useState(false)
 
   return (
-    <main className="App" style={{color: color ? '#fff' : 'rgb(7, 113, 113)'}}>
+    <main className="App" style={{color: state.color ? '#000' : 'rgb(7, 113, 113)'}}>
       <input
         type="text"
-        value={userInput}
-        onChange={(e) => setUserInput(e.target.value)}
+        value={state.userInput}
+        onChange={(e) => dispatch({type: 'newUserInput', payLoad: e.target.value})}
       />
 
       <br />
@@ -32,7 +36,7 @@ const App = () => {
       <section>
         <button onClick={(() => dispatch({type: 'decrement'}))}>-</button>
         <button onClick={(() => dispatch({type: 'increment'}))}>+</button>
-        <button onClick={(() => setColor(prev => !prev))}>Color</button>
+      <button onClick={(() => dispatch({type: 'tgColor'}))}>Color</button>
       </section>
 
         <br />
