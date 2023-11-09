@@ -42,12 +42,7 @@ const App = () => {
         <br />
         <br />
 
-        <p>Seconds: </p>
-
-        <br />
-        <br />
-
-        <p></p>
+        <p>{state.userInput}</p>
     </main>
   );
 };
