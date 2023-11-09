@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useReducer } from "react";
 
 const App = () => {
   const [userInput, setUserInput] = useState('')
@@ -6,7 +6,7 @@ const App = () => {
   const [color, setColor] = useState(false)
 
   return (
-    <main className="App" style={{color: color ? '#fff' : '#fff92'}}>
+    <main className="App" style={{color: color ? '#fff' : '#fff952'}}>
       <input
         type="text"
         value={userInput}
