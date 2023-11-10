@@ -33,7 +33,7 @@ const App = () => {
       <input
         type="text"
         value={state.userInput}
-        onChange={(e) => dispatch({type: 'newUserInput', payLoad: e.target.value})}
+        onChange={(e) => dispatch({type: ACTION.NEW_USER_INPUT, payLoad: e.target.value})}
       />
 
       <br />
